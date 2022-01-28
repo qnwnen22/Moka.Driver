@@ -107,6 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DML\ObjectID.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="DML\Delete.cs" />

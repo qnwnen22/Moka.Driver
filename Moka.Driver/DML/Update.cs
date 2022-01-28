@@ -9,7 +9,6 @@ namespace System.Driver
 {
     public partial class MongoClientAdvance
     {
-
         internal UpdateDefinition<T> GetUpdateDefinition<T>(List<Update> updates)
         {
             UpdateDefinitionBuilder<T> result = Builders<T>.Update;
@@ -40,6 +39,13 @@ namespace System.Driver
             FilterDefinition<T> filterDefinition = GetFilterDefinition<T>(filters);
             UpdateDefinition<T> getUpdateDefinition = GetUpdateDefinition<T>(updates);
             return iMongoCollection.FindOneAndUpdate(filterDefinition, getUpdateDefinition);
+        }
+        public T FindOneAndUpdate<T>(string database, string collection, Filter filter, Update update)
+        {
+            var filterList = new List<Filter>() { filter };
+            var updateList = new List<Update>() { update };
+            IMongoCollection<T> getCollection = this.GetCollection<T>(database, collection);
+            return FindOneAndUpdate<T>(getCollection, filterList, updateList);
         }
     }
 }
